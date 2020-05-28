@@ -1,6 +1,6 @@
-     $  Decision Tree Method  $
+     $  Decision Tree Method     $
 
-# Problem 1 #
+# Problem 1 starting#
 
 library(party)
 
