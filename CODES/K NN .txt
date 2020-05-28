@@ -1,0 +1,19 @@
+$ K Nearest Neighbours $
+
+# Problem 1#
+
+X1<-c(1,1,2,2)
+X2<-c(2,3,2,4)
+plot(X1,X2,xlim=c(0,6),ylim=c(0,6),cex=2,pch=20,col="red")
+text(X1,X2,rep("A",4),pos=2,col="red")
+X1<-c(4,4,5,5)
+X2<-c(3,5,2,4)
+points(X1,X2,cex=2,pch=20,col="blue")
+text(X1,X2,rep("B",4),pos=4,col="blue")
+points(3,3,cex=2.5,pch=15)
+abline(h=0:6,v=0:6,col="gray",lty=3)
+X1<-c(1,1,2,2,4,4,5,5)
+X2<-c(2,3,2,4,3,5,2,4)
+
+D<-sqrt((3-X1)^2+(3-X2)^2)
+D

@@ -1,0 +1,136 @@
+     $  Decision Tree Method  $
+
+# Problem 1 #
+
+library(party)
+
+head(iris)
+
+str(iris)
+
+set.seed(123)
+s<-sample(150,100)
+traindata<-iris[s,]
+testdata<-iris[-s,]
+summary(traindata)
+
+decTree<-ctree(Species~.,data=traindata)
+table(traindata$Species,predict(decTree))
+
+plot(decTree)
+
+summary(testdata)
+
+testpred<-predict(decTree,newdata=testdata)
+table(testdata$Species,testpred)
+
+-----------------------------------------------------------------------------
+
+# Problem 2 #
+
+# download customer.txt from moodle.
+
+mydata<-read.table(file.choose(),header=TRUE,sep="\t")
+head(mydata)
+
+str(mydata)
+
+mydata[1:4]<-lapply(mydata[1:4],as.numeric)
+summary(mydata)
+
+str(mydata)
+
+set.seed(1234)
+s<-sample(150,100)
+traindata<-mydata[s,]
+testdata<-mydata[-s,]
+summary(traindata)
+
+decTree<-ctree(category~.,data=traindata)
+table(traindata$cateory,predict(decTree))
+
+plot(decTree)
+
+summary(traindata)
+
+testPred<-predict(decTree,newdata=testdata)
+table(testdata$category,testPred)
+
+newtest<-testdata[1,-5]
+fix(newtest)
+newtest
+
+predict(decTree,newtest)
+------------------------------------------------------------------------
+
+# Problem no 3 #
+
+
+mydata<-na.omit(airquality)
+str(mydata)
+
+mydata[1:6]<-lapply(mydata[1:6],as.numeric)
+str(mydata)
+
+OzTree<-ctree(Ozone~.,data=mydata)
+plot(OzTree)
+
+new<-mydata[1,]
+fix(new)     # enter ozone=41, solar= 65, wind= 13.2, temp= 58, month= 5, day=15
+
+predict(OzTree,newdata=new)
+
+-------------------------------------------------------------------------
+
+# Problem no 4 #
+
+download dataset mushroom.csv from moodle.
+
+library(party)
+
+mushrooms<-read.csv(file.choose(),header=TRUE)
+head(mushrooms)
+
+str(mushrooms)
+
+nrow(mushrooms)      # to check how many rows are there
+
+sum(complete.cases(mushrooms))    # to check how many rows are complete
+
+table(mushrooms[,17])    # to check the type of entire column no 17. (it is poisonous)
+
+mushooms<-mushrooms[,-17]   # to delete the 17th column
+
+table(mushrooms$type,mushrooms$odor)
+
+set.seed(12345)
+train<-sample(1:nrow(mushrooms),size=ceiling(0.80*nrow(mushrooms)),replace=FALSE)
+mushrooms_train<-mushrooms[train,]
+mushrooms_test<-mushrooms[-train,]
+partyTree<-ctree(type~.,data=mushrooms_train)
+plot(partyTree)
+
+testPred<-predict(partyTree,newdata=mushrooms_test)
+
+table(actual=mushrooms_test$type,predicted=testPred)
+
+--------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
